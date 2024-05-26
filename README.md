@@ -31,6 +31,3 @@ References:
 - https://getbootstrap.com/docs/5.3/components/card/#about
 - https://chatgpt.com
 - https://gemini.google.com/app
-
-Refferences:
-- https://nilheim-mechatronics.notion.site/Simple-Eye-Mechanism-983e6cad7059410d9cb958e8c1c5b700
