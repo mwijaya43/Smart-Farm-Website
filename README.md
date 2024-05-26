@@ -10,24 +10,12 @@ Smart Farm Website Info Page
 
 ![Halaman Info](https://github.com/mwijaya43/Smart-Farm-Website/assets/162684142/6ce4d482-82df-4cc1-adc8-dd29f02ba17b)
 
-Ecosystem Page
-
-![EcosystemML](https://github.com/mwijaya43/Smart-Farm-Website/assets/162684142/69f03699-bc59-4f49-828b-205cdacc86a6)
-
 Ecosystem Log 
 
 ![Smart Ecosystem Log](https://github.com/mwijaya43/Smart-Farm-Website/assets/162684142/1119cbcf-1a33-4179-9a63-f771a3d2d74b)
  
-Management Page
-
-![ManagementML](https://github.com/mwijaya43/Smart-Farm-Website/assets/162684142/d1389fa5-5ca8-4f54-bed3-d3561a4fded3)
-
 Management Log
 ![Smart Farm Management Log](https://github.com/mwijaya43/Smart-Farm-Website/assets/162684142/15c8ef6c-00a4-4fc3-94f3-abf974a24f4f)
-
-Ecosystem Page
-
-![Smart Ecosystem Log](https://github.com/mwijaya43/Smart-Farm-Website/assets/162684142/64c5710a-f3d6-4a86-90b0-7409d7f25ac2)
 
 Ecosystem Log
 
