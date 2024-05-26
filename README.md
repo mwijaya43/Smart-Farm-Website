@@ -1,7 +1,8 @@
 # Smart-Farm-Website
 Website for Smart Farm Monitoring Purpose
 
-Preview:
+Website Preview:
+
 Smart Farm Website Main Page
 
 ![Smart Farm System Main HTML](https://github.com/mwijaya43/Smart-Farm-Website/assets/162684142/42640aa2-c561-4b1d-8194-30e024d733e6)
