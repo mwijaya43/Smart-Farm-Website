@@ -1,7 +1,7 @@
 # Smart-Farm-Website
 Website for Smart Farm Monitoring Purpose
 
-Website Preview:
+Preview:
 
 Smart Farm Website Main Page
 
