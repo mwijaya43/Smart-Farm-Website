@@ -1,0 +1,556 @@
+[
+    {
+        "id": "cae17c0ae4ac6277",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9a9d3b970ce3dbb6",
+        "type": "inject",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "Smart Farm Trigger",
+        "payloadType": "str",
+        "x": 220,
+        "y": 480,
+        "wires": [
+            [
+                "f9278a6274aa0bfb",
+                "97f603023b7260a0",
+                "01a4786724b631b0",
+                "cb26dbbce4d7e8a1",
+                "a60c0447c697489f",
+                "4bdfbe1dab90e02d",
+                "71495e40f5b52d5e",
+                "4eb2dc24957253ba",
+                "d1409af4a024cf23"
+            ]
+        ]
+    },
+    {
+        "id": "f9278a6274aa0bfb",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor Ultrasonic",
+        "low": "0",
+        "high": "51",
+        "inte": "true",
+        "property": "payload",
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "96137f88f5652895"
+            ]
+        ]
+    },
+    {
+        "id": "97f603023b7260a0",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor Kamera",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "0c74078ee4930ee6"
+            ]
+        ]
+    },
+    {
+        "id": "01a4786724b631b0",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor LIDAR",
+        "low": "0",
+        "high": "30",
+        "inte": "false",
+        "property": "payload",
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "f2ecfe15454504dc"
+            ]
+        ]
+    },
+    {
+        "id": "cb26dbbce4d7e8a1",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor Water Level",
+        "low": "0",
+        "high": "100",
+        "inte": "true",
+        "property": "payload",
+        "x": 630,
+        "y": 420,
+        "wires": [
+            [
+                "d1649eafd7f5fece"
+            ]
+        ]
+    },
+    {
+        "id": "a60c0447c697489f",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor Nutrisi (TDS)",
+        "low": "0",
+        "high": "100",
+        "inte": "true",
+        "property": "payload",
+        "x": 620,
+        "y": 480,
+        "wires": [
+            [
+                "f21e6f2496a38e38"
+            ]
+        ]
+    },
+    {
+        "id": "4bdfbe1dab90e02d",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor pH",
+        "low": "3",
+        "high": "8",
+        "inte": "false",
+        "property": "payload",
+        "x": 650,
+        "y": 540,
+        "wires": [
+            [
+                "0d5a6228e7ff7c49"
+            ]
+        ]
+    },
+    {
+        "id": "71495e40f5b52d5e",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor Suhu",
+        "low": "20",
+        "high": "40",
+        "inte": "false",
+        "property": "payload",
+        "x": 670,
+        "y": 660,
+        "wires": [
+            [
+                "2ef039c4ab2ade14"
+            ]
+        ]
+    },
+    {
+        "id": "4eb2dc24957253ba",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor Kelembapan",
+        "low": 1,
+        "high": 10,
+        "inte": "false",
+        "property": "payload",
+        "x": 640,
+        "y": 760,
+        "wires": [
+            [
+                "dfc131e893c5c29b"
+            ]
+        ]
+    },
+    {
+        "id": "d1409af4a024cf23",
+        "type": "random",
+        "z": "cae17c0ae4ac6277",
+        "name": "Sensor Intensitas Cahaya",
+        "low": "3000",
+        "high": "10000",
+        "inte": "true",
+        "property": "payload",
+        "x": 630,
+        "y": 840,
+        "wires": [
+            [
+                "0d4ced8dd7ae552d"
+            ]
+        ]
+    },
+    {
+        "id": "517db5841bea4e9f",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_Ultrasonics",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1110,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "0a793a48190e2062",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_Kameras",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1110,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "03fa4adfa936c329",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_LIDARs",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1100,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "9af763cb1e3120fe",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_Water_Levels",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1080,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d9f99ea7de40281c",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_Nutrisis",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1060,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "01921e506ae6b6d4",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_pHs",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1050,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "efcb97cc71ea7bb7",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_Suhus",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1080,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "8ee1e0ca4593e818",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_Kelembapans",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1100,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "b6f7a84b2d3d2642",
+        "type": "mqtt out",
+        "z": "cae17c0ae4ac6277",
+        "name": "",
+        "topic": "Sensor_IntensitasCahayas",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "df6871dc2993d403",
+        "x": 1120,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "96137f88f5652895",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 160,
+        "wires": [
+            [
+                "517db5841bea4e9f"
+            ]
+        ]
+    },
+    {
+        "id": "0c74078ee4930ee6",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 240,
+        "wires": [
+            [
+                "0a793a48190e2062"
+            ]
+        ]
+    },
+    {
+        "id": "f2ecfe15454504dc",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 320,
+        "wires": [
+            [
+                "03fa4adfa936c329"
+            ]
+        ]
+    },
+    {
+        "id": "d1649eafd7f5fece",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 420,
+        "wires": [
+            [
+                "9af763cb1e3120fe"
+            ]
+        ]
+    },
+    {
+        "id": "f21e6f2496a38e38",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 480,
+        "wires": [
+            [
+                "d9f99ea7de40281c"
+            ]
+        ]
+    },
+    {
+        "id": "0d5a6228e7ff7c49",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 540,
+        "wires": [
+            [
+                "01921e506ae6b6d4"
+            ]
+        ]
+    },
+    {
+        "id": "2ef039c4ab2ade14",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 660,
+        "wires": [
+            [
+                "efcb97cc71ea7bb7"
+            ]
+        ]
+    },
+    {
+        "id": "dfc131e893c5c29b",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 760,
+        "wires": [
+            [
+                "8ee1e0ca4593e818"
+            ]
+        ]
+    },
+    {
+        "id": "0d4ced8dd7ae552d",
+        "type": "function",
+        "z": "cae17c0ae4ac6277",
+        "name": "float type convert",
+        "func": "var pesan = {\n    payload: msg.payload // Mengirim nilai float melalui payload\n};\n\nreturn pesan;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 840,
+        "wires": [
+            [
+                "b6f7a84b2d3d2642"
+            ]
+        ]
+    },
+    {
+        "id": "df6871dc2993d403",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": "1886",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
