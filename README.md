@@ -1,10 +1,6 @@
 # Smart-Farm-Website
 Website for Smart Farm Monitoring Purpose
 
-3D Printed Components:
-
-![Stl Components Diagram](https://github.com/mwijaya43/Animatronic-Eye-Mechanism/assets/162684142/0a7dc95d-c709-4cde-9d00-c83e2dd15bb6)
-
 Preview:
 Smart Farm Website Main Page
 
