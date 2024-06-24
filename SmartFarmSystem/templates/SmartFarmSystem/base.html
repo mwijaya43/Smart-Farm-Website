@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Smart Farm</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages': ['corechart']
+      });
+      google.charts.setOnLoadCallback(drawChart);
+    </script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(255, 255, 227) !important;
+        color: #333;
+      }
+      .navbar {
+          background-color: rgb(200, 237, 180); 
+          padding: 20px;
+      }
+      .card {
+          margin-top: 30px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+      .navbar-brand {
+          color: #000000 !important; /* White text color */
+          font-weight: bold;
+      }
+
+      .navbar-nav {
+          margin-left: auto;
+      }
+
+      .navbar-nav .nav-link {
+          color: #fff !important; /* White text color for menu items */
+          margin-right: 15px;
+      }
+
+      /* Move the last button to the right */
+      .navbar-nav .nav-item:last-child {
+          margin-right: 0;
+          margin-left: auto;
+      }
+
+      .chart-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      .chart-container canvas {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+      }
+
+      .card-body {
+        background-color: #f8f9fa;
+        /* Adjust as needed */
+        padding: 20px;
+      }
+
+      .status-container {
+        display: flex;
+        justify-content: space-around;
+        /* Adjust as needed */
+        align-items: center;        /* Adjust as needed */
+        margin-top: 20px;
+        gap: 10px;
+      }
+
+      .status-box {
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        background-color: #a2aeff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: fit-content;
+      }
+
+    /* Style for the status items */
+      .status-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .status-circle {
+        width: 80px;
+        /* Increased size */
+        height: 80px;
+        /* Increased size */
+        border-radius: 50%;
+        border: 2px solid #000;
+        /* Sample border, customize as desired */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        /* Adjust as needed */
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .status-box:hover {
+        transform: scale(2.2);
+        /* Increase size on hover */
+      }
+
+      .chart-container:hover {
+        transform: scale(1.3);
+        /* Increase size on hover */
+      }
+      /* Add your specific styles for different status colors (status-1, status-2, etc.) */
+      .status-circle:hover {
+        transform: scale(1.1);
+        /* Increase size on hover */
+      }
+     
+      .status-on {
+        background-color: #28a745;
+      }
+
+      .status-yellow {
+        background-color: #ffc107;
+      }
+
+      .status-3 {
+        background-color: #eb5757;
+      }
+
+      .status-2 {
+        background-color: #555;
+      }
+
+      .status-1 {
+        background-color: #d3d3d3;
+      }
+
+      .status-0 {
+        background-color: #ffd700;
+      }
+
+      .status-off {
+        background-color: #ff0000;
+      }
+
+      .status-none {
+        background-color: #6c757d;
+      }
+
+      .status-LCD {
+        background-color: #800080;
+      }
+    </style>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="https://lh3.googleusercontent.com/pw/ADCreHcxHIWbANwwJUBQVzav7-WA7p1wgPfNBZYRUEtHoeuygIZW5pBMOYMafQF4dKS9O2byZsZT5KK4C2he2DFqAUIOHMJlcBcgQ0wmsf0n6BoxOGAUkafm5eOlff4cTKkn8rQZtWfjFHdv3ztHHyeGxeGEjZbaK4RBpk5jJ8U19JKGOtNrsULS89P-szTTKEo5xxvNL4paVcdLbcAVJ1RdjwnIMgDjBo4D_2e2og1L-k-DICPzpftvuyGdD7arkIfzGB881g0_iispoljidue-NS_thtbmFnswM7HJOwdR66uDAATYscjlSGlOm0dnXtkDAr8M71C2690rc7K4sfWBP8rqdWwmrfPRrnzBlBUR1LAZGG5j5eXyEHSdQyFTIpL3_649CA_iugSJnKsI5CTqkp5MHhDRoas9-GLYcfxhzYah6MaR-6uuRamJX72TBBgdB1F5B4-fmjDrSU9K5ZlCs5pXLpAMHOUBpJztkCSTtl-i0IIlPvLmNZOnFpDUvxOtNJz8ZfVOUI7m6tFH8q7mBM-YcsvcVbYJfHeRxz8TP5Wu_su35d0eWR3Etq0Wznpm-hwt5WcROQ2vGNQWz9V2cTxk6np7Bd0t4TAsqxfLuJDp1M4sDs-knSmuxv0c05ZL7trTAG7KEdI-hMEi8Q9Dk7GoIuf03qzxMPiAp_GR8TgzS3we9vHbyXUuDHHa9R2eOL9BxBUiNLU5X_WNeVxnC0FqohThrUj6pJk9VaR2K3eCUqxO7gKm2OKj1xurOAXBJF8jLp5ZTohfYmtZrLmH26q-0ajphNGA53wJsOZP-cTXZqpSoJh1A_nyJOisWt4y9BNZ1kj1QW4g7MVbnKAJiX6F3OXvcEouThQxum9yIUNvRPqqcve-cYLwD8vSuoBeNrUhxlN9PYsMOJ6qTHyNx7QJSYQRYV2w8PefEHU=w225-h225-s-no-gm?authuser=0" alt="Logo" height="30">
+              Smart Farm System
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <!-- INFO button linked to another HTML page -->
+              <a href="{% url 'SmartFarmSystem:SmartFarmSystemInformation' %}" class="btn btn-outline-success">INFO</a>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="chart-container">
+              <div id="curve_chart" style="width: 1200px; height: 500px"></div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><strong>Ecosystem</strong></h5>
+              <div class="status-container">
+                <div class="status-item">
+                  <div class="status-title"><strong>Kipas & Ventilasi</strong></div>
+                  <div class="status-circle status-1" id="circle1">
+                      <span class="status-text"></span>
+                  </div>
+                </div>  
+                <div class="status-item">
+                  <div class="status-title"><strong>Mist Sprinkler</strong></div>
+                  <div class="status-circle status-2" id="circle2">
+                      <span class="status-text"></span>
+                  </div>
+                </div>  
+                <div class="status-item">
+                  <div class="status-title"><strong>UV Lamp</strong></div>
+                  <div class="status-circle status-3" id="circle3">
+                    <span class="status-text"></span>
+                  </div>
+                </div>  
+              </div>
+              <p class="card-text">_____________________________________________________________________________</p>
+              <a href="{% url 'SmartFarmSystem:ecosystemlog' %}" class="btn btn-primary">LOG</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="chart-container">
+              <div id="curve_chart2" style="width: 1200px; height: 500px"></div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><strong>Smart Planting</strong></h5>
+              <div class="status-container">
+                <div class="status-item">
+                  <div class="status-title"><strong>Pompa Air</strong></div>
+                  <div class="status-circle status-4" id="circle4">
+                    <span class="status-text"></span>
+                  </div>
+                </div>  
+                <div class="status-item">
+                  <div class="status-title"><strong>Dispenser Nutrisi</strong></div>
+                  <div class="status-circle status-5" id="circle5">
+                    <span class="status-text"></span>
+                  </div>
+                </div>  
+                <div class="status-item">
+                  <div class="status-title"><strong>Dispenser pH</strong></div>
+                  <div class="status-circle status-6" id="circle6">
+                    <span class="status-text"></span>
+                  </div>
+                </div>  
+              </div>
+              <div class="-buttoncontainer">
+                <p class="card-text">_____________________________________________________________________________</p>
+                <a href="{% url 'SmartFarmSystem:smartplantinglog' %}" class="btn btn-primary">LOG</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="chart-container">
+              <div id="curve_chart3" style="width: 1200px; height: 500px"></div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><strong>Farm Management</strong></h5>
+              <div class="status-container">
+                <div class="status-item">
+                  <div class="status-title"><strong>LED RGB</strong></div>
+                  <div class="status-circle status-7" id="circle7">
+                    <span class="status-text"></span>
+                  </div>
+                </div>  
+                <div class="status-item">
+                  <div class="status-title"><strong>LCD</strong></div>
+                  <div class="status-box status-8" id="circle8">
+                    <span class="status-text"></span>
+                  </div>
+                </div>  
+                <div class="status-item">
+                  <div class="status-title"><strong>Alarm</strong></div>
+                    <div class="status-circle status-9" id="circle9">
+                    <span class="status-text"></span>
+                  </div>
+                </div>  
+              </div>
+              <p class="card-text">_____________________________________________________________________________</p>
+              <a href="{% url 'SmartFarmSystem:farmmanagementlog' %}" class="btn btn-primary">LOG</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function fetchAndDrawFirstChart(sensorData) {
+        const suhuData = sensorData['suhu'];
+        const kelembapanData = sensorData['kelembapan'];
+        const cahayaData = sensorData['cahaya'];
+        const limitedSuhu = suhuData.slice(-100);
+        const limitedKelembapan = kelembapanData.slice(-100);
+        const limitedCahaya = cahayaData.slice(-100);
+        const chartData = [
+          ['Time', 'Sensor Suhu', 'Sensor Kelembapan', 'Sensor Intensitas Cahaya']
+        ]; // Adjust the chartData based on your requirements
+        limitedSuhu.forEach((data, index) => {
+          const timestamp = new Date(data.timestamp);
+          const formattedTime = `${timestamp.toLocaleDateString()} ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+          chartData.push([
+            formattedTime,
+            parseFloat(limitedSuhu[index].value), // Sensor Suhu value
+            parseFloat(limitedKelembapan[index].value), // Sensor Kelembapan value
+            parseFloat(limitedCahaya[index].value/100) // Sensor Intensitas Cahaya value
+          ]);
+        });
+        var data = google.visualization.arrayToDataTable(chartData);
+        var options = {
+          title: 'Sensor Ecosystem',
+          curveType: 'function',
+          legend: {
+            position: 'top'
+          }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
+      }
+
+      function fetchAndDrawSecondChart(sensorData) {
+        const waterlevelData = sensorData['waterlevel'];
+        const nutrisiData = sensorData['nutrisi'];
+        const phData = sensorData['ph'];
+        const limitedwaterlevel = waterlevelData.slice(-100);
+        const limitednutrisi = nutrisiData.slice(-100);
+        const limitedph = phData.slice(-100);
+        const chartData2 = [
+          ['Time', 'Sensor Water Level', 'Sensor Nutrisi', 'Sensor pH']
+        ]; // Adjust the chartData based on your requirements
+        limitedwaterlevel.forEach((data, index) => {
+          const timestamp = new Date(data.timestamp);
+          const formattedTime = `${timestamp.toLocaleDateString()} ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+          chartData2.push([
+            formattedTime,
+            parseFloat(limitedwaterlevel[index].value), // Sensor Water Level value
+            parseFloat(limitednutrisi[index].value), // Sensor Nutrisi value
+            parseFloat(limitedph[index].value) // Sensor pH value
+          ]);
+        });
+        var data2 = google.visualization.arrayToDataTable(chartData2);
+        var options2 = {
+          title: 'Sensor Smart Planting',
+          curveType: 'function',
+          legend: {
+            position: 'top'
+          }
+        };
+        var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+        chart2.draw(data2, options2);
+      }
+
+      function fetchAndDrawThirdChart(sensorData) {
+        const kameraData = sensorData['kamera'];
+        const ultrasonicData = sensorData['ultrasonic'];
+        const lidarData = sensorData['lidar'];
+        const limitedkamera = kameraData.slice(-100);
+        const limitedultrasonic = ultrasonicData.slice(-100);
+        const limitedlidar = lidarData.slice(-100);
+        const chartData3 = [
+          ['Time', 'Sensor Kamera', 'Sensor Ultrasonic', 'Sensor LIDAR']
+        ]; // Adjust the chartData based on your requirements
+        limitedkamera.forEach((data, index) => {
+          const timestamp = new Date(data.timestamp);
+          const formattedTime = `${timestamp.toLocaleDateString()} ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+          chartData3.push([
+            formattedTime,
+            parseFloat(limitedkamera[index].value), // Sensor Kamera value
+            parseFloat(limitedultrasonic[index].value), // Sensor Ultrasonic value
+            parseFloat(limitedlidar[index].value) // Sensor LIDAR value
+          ]);
+        });
+        var data3 = google.visualization.arrayToDataTable(chartData3);
+        var options3 = {
+          title: 'Sensor Farm Management',
+          curveType: 'function',
+          legend: {
+            position: 'top'
+          }
+        };
+        // Corrected ID for the third chart
+        var chart3 = new google.visualization.LineChart(document.getElementById('curve_chart3'));
+        chart3.draw(data3, options3);
+      }
+
+      function fetchAndDrawFirstActuator(sensorData) {
+        const kipasventData = sensorData['kipas_vent'];
+        const watermistData = sensorData['water_mist'];
+        const uvData = sensorData['lampu_uv'];
+        const kipasventValue = parseFloat(kipasventData[kipasventData.length - 1].value);
+        const watermistValue = parse(watermistData[watermistData.length - 1].value);
+        const uvValue = parse(uvData[uvData.length - 1].value);
+        console.log("Kipas Ventilasi", kipasventValue)
+        updateElementBasedOnValue('circle1', kipasventValue, ' ');
+        updateElementBasedOnValue('circle2', watermistValue, ' ');
+        updateElementBasedOnValue('circle3', uvValue, ' ');
+      }
+
+      function fetchAndDrawSecondActuator(sensorData) {
+        const pompaairData = sensorData['pompa_air'];
+        const dispensernutrisiData = sensorData['dispenser_nutrisi'];
+        const dispenserpHData = sensorData['dispenser_ph'];
+
+        // Getting the latest values for each actuator
+        const pompaairValue = parse(pompaairData[pompaairData.length - 1].value);
+        const dispensernutrisiValue = parse(dispensernutrisiData[dispensernutrisiData.length - 1].value);
+        const dispenserpHValue = parse(dispenserpHData[dispenserpHData.length - 1].value);
+        console.log('Pompa Air Value:', pompaairValue);
+        console.log('Dispenser Nutrisi Value:', dispensernutrisiValue);
+        console.log('Dispenser pH Value:', dispenserpHValue);
+        // Updating circles based on their values
+        updateElementBasedOnValue1('circle4', pompaairValue);
+        updateElementBasedOnValue1('circle5', dispensernutrisiValue);
+        updateElementBasedOnValue1('circle6', dispenserpHValue);
+      }
+
+      function fetchAndDrawThirdActuator(sensorData) {
+        const ledrgbData = sensorData['led_rgb'];
+        const lcdData = sensorData['monitor'];
+        const alarmData = sensorData['alarm'];
+
+        // Getting the latest values for each actuator
+        const ledrgbValue = parse(ledrgbData[ledrgbData.length - 1].value);
+        const lcdValue = parse(lcdData[lcdData.length - 1].value);
+        const alarmValue = parse(alarmData[alarmData.length - 1].value);
+        console.log('LED RGB Value:', ledrgbValue);
+        console.log('LCD Value:', lcdValue);
+        console.log('Alarm Value:', alarmValue);
+        // Updating circles based on their values
+        updateElementBasedOnValue2('circle7', ledrgbValue);
+        updateElementBasedOnValue2('circle8', lcdValue);
+        updateElementBasedOnValue2('circle9', alarmValue);
+      }
+
+      function parse(value) {
+        return value.toString(); // Ensure the parsed value is a string type
+      }
+
+      function updateElementBasedOnValue(elementId, value, statusText) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        const statusTextSpan = element.querySelector('.status-text');
+        if (statusTextSpan) {
+          statusTextSpan.textContent = `${statusText}${value}`;
+        }
+        // Remove existing status classes
+        element.classList.remove('status-0', 'status-1', 'status-2', 'status-3', 'status-on', 'status-off', 'status-yellow');
+        // Add new status class based on the condition
+        if (elementId === 'circle1') {
+          if (value === 0) {
+            element.classList.add('status-0');
+          } else if (value === 1) {
+            element.classList.add('status-1');
+          } else if (value === 2) {
+            element.classList.add('status-2');
+          } else if (value === 3) {
+            element.classList.add('status-3');
+          }
+        } else if (elementId === 'circle2' || elementId === 'circle3') {
+          if (value === 'On') {
+            element.classList.add('status-on');
+          } else if (value === 'Off') {
+            element.classList.add('status-off');
+          }
+        } 
+      }
+
+      function updateElementBasedOnValue1(elementId, value) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+
+        const statusTextSpan = element.querySelector('.status-text');
+        if (statusTextSpan) {
+          statusTextSpan.textContent = value;
+        }
+
+        element.classList.remove('status-on', 'status-off');
+
+        // Update classes based on the value
+        if (elementId === 'circle4' || elementId === 'circle5' || elementId === 'circle6') {
+          if (value === 'On') {
+            element.classList.add('status-on');
+          } else if (value === 'Off') {
+            element.classList.add('status-off');
+          }
+        }
+      }
+
+      function updateElementBasedOnValue2(elementId, value) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+
+        const statusTextSpan = element.querySelector('.status-text');
+        if (statusTextSpan) {
+          statusTextSpan.textContent = value;
+        }
+
+        element.classList.remove('status-on', 'status-off', 'status-yellow');
+
+        // Update classes based on the value
+        if (elementId === 'circle7') {
+          if (value === 'Green') {
+            element.classList.add('status-on');
+          } else if (value === 'Red') {
+            element.classList.add('status-off');
+          } else if (value === 'Yellow') {
+            element.classList.add('status-yellow');
+          }
+        } else if (elementId === 'circle8' || elementId === 'circle9') {
+          if (value === 'On') {
+            element.classList.add('status-on');
+          } else if (value === 'Off') {
+            element.classList.add('status-off');
+          }
+        }
+      }
+
+      function drawChart() {
+        fetchSensorDataAndUpdateCharts();
+        setInterval(fetchSensorDataAndUpdateCharts, 3000);
+      }
+      google.charts.setOnLoadCallback(drawChart);
+
+      function fetchSensorDataAndUpdateCharts() {
+        fetch('/fetch_sensor_data/').then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        }).then(sensorData => {
+          fetchAndDrawFirstChart(sensorData);
+          fetchAndDrawSecondChart(sensorData);
+          fetchAndDrawThirdChart(sensorData);
+          fetchAndDrawThirdActuator(sensorData);
+          fetchAndDrawFirstActuator(sensorData);
+          fetchAndDrawSecondActuator(sensorData);
+          
+          
+          
+        }).catch(error => {
+          console.error('There was a problem with fetching sensor data:', error);
+        });
+      }
+      setInterval(function() {
+        fetch('/trigger-smart-farm-loop/').then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        }).then(data => {
+          console.log('SmartFarmSystemLoop triggered successfully.');
+        }).catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+      }, 1000);
+    </script>

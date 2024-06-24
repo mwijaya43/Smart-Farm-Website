@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: rgb(255, 255, 227) !important;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: rgb(200, 237, 180); 
+            padding: 20px;
+        }
+
+        .navbar-brand {
+            color: #000000 !important; /* White text color */
+            font-weight: bold;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important; /* White text color for menu items */
+            margin-right: 15px;
+        }
+
+        /* Move the last button to the right */
+        .navbar-nav .nav-item:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Make the table header fixed */
+        table thead {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #f2f2f2;
+        }
+
+    </style>
+
+    <title>Data Sensor</title>
+    <!-- Include Bootstrap CSS and Chart.js library -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://lh3.googleusercontent.com/pw/ADCreHcxHIWbANwwJUBQVzav7-WA7p1wgPfNBZYRUEtHoeuygIZW5pBMOYMafQF4dKS9O2byZsZT5KK4C2he2DFqAUIOHMJlcBcgQ0wmsf0n6BoxOGAUkafm5eOlff4cTKkn8rQZtWfjFHdv3ztHHyeGxeGEjZbaK4RBpk5jJ8U19JKGOtNrsULS89P-szTTKEo5xxvNL4paVcdLbcAVJ1RdjwnIMgDjBo4D_2e2og1L-k-DICPzpftvuyGdD7arkIfzGB881g0_iispoljidue-NS_thtbmFnswM7HJOwdR66uDAATYscjlSGlOm0dnXtkDAr8M71C2690rc7K4sfWBP8rqdWwmrfPRrnzBlBUR1LAZGG5j5eXyEHSdQyFTIpL3_649CA_iugSJnKsI5CTqkp5MHhDRoas9-GLYcfxhzYah6MaR-6uuRamJX72TBBgdB1F5B4-fmjDrSU9K5ZlCs5pXLpAMHOUBpJztkCSTtl-i0IIlPvLmNZOnFpDUvxOtNJz8ZfVOUI7m6tFH8q7mBM-YcsvcVbYJfHeRxz8TP5Wu_su35d0eWR3Etq0Wznpm-hwt5WcROQ2vGNQWz9V2cTxk6np7Bd0t4TAsqxfLuJDp1M4sDs-knSmuxv0c05ZL7trTAG7KEdI-hMEi8Q9Dk7GoIuf03qzxMPiAp_GR8TgzS3we9vHbyXUuDHHa9R2eOL9BxBUiNLU5X_WNeVxnC0FqohThrUj6pJk9VaR2K3eCUqxO7gKm2OKj1xurOAXBJF8jLp5ZTohfYmtZrLmH26q-0ajphNGA53wJsOZP-cTXZqpSoJh1A_nyJOisWt4y9BNZ1kj1QW4g7MVbnKAJiX6F3OXvcEouThQxum9yIUNvRPqqcve-cYLwD8vSuoBeNrUhxlN9PYsMOJ6qTHyNx7QJSYQRYV2w8PefEHU=w225-h225-s-no-gm?authuser=0" alt="Logo" height="30">
+                Smart Ecosystem Log
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- New button moved to the right -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="javascript:history.back()" class="btn btn-outline-success">Back</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- Kolom Kiri - Sensor -->
+        <table class="table table-success table-striped">
+            <!-- Table headers -->
+            <thead>
+                <tr>
+                    <th>Time Tag</th>
+                    <th>Sensor Suhu</th>
+                    <th>Sensor Kelembapan</th>
+                    <th>Sensor Intensitas Cahaya</th>
+                    <th>Aktuator Kipas & Ventilasi</th>
+                    <th>Aktuator Water Mist Sprinkler</th>
+                    <th>Aktuator Lampu UV</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in ecosystem_logs %}
+                    <!-- Table data for sensor -->
+                    <tr>
+                        <td>{{ data.timestamp }}</td>
+                        <td>{{ data.suhuvalue }}</td>
+                        <td>{{ data.kelembapanvalue }}</td>
+                        <td>{{ data.intensitascahayavalue }}</td>
+                        <td>{{ data.kipasvalue }}</td>
+                        <td>{{ data.watersprinklervalue }}</td>
+                        <td>{{ data.lampuUVvalue }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Your JavaScript code remains unchanged
+        function updateTable() {
+            fetch('/ecosystemlog/')
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // Create a temporary container to hold the fetched HTML data
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = data;
+
+                    // Find the table content in the fetched HTML
+                    const newTable = tempContainer.querySelector('table');
+
+                    // Replace the table content with the updated data
+                    const existingTable = document.querySelector('table');
+                    existingTable.innerHTML = newTable.innerHTML;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        function triggerSmartFarmLoop() {
+            fetch('/trigger-smart-farm-loop/')
+                .then(response => {
+                    if (response.ok) {
+                        console.log('SmartFarmSystemLoop triggered successfully.');
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        setInterval(() => {
+            updateTable();
+            triggerSmartFarmLoop();
+        }, 2000);
+    </script>
+
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

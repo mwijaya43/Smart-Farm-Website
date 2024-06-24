@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .chart-container canvas {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-md">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary">INFO</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="chart-container">
+                        <canvas id="combinedLineChart1" height="200"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card 1</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="chart-container">
+                        <canvas id="combinedLineChart2" height="200"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card 2</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="chart-container">
+                        <canvas id="combinedLineChart3" height="200"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card 3</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to initialize combined chart
+        function initCombinedChart(ctx) {
+            return new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                            label: 'Sensor Ultrasonic',
+                            data: [].slice(-100),
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            fill: false
+                        },
+                        {
+                            label: 'Sensor Kamera',
+                            data: [].slice(-100),
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 2,
+                            fill: false
+                        },
+                        {
+                            label: 'Sensor LIDAR',
+                            data: [],
+                            borderColor: 'rgba(255, 205, 86, 1)',
+                            borderWidth: 2,
+                            fill: false
+                        },
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                unit: 'second',
+                                displayFormats: {
+                                    second: 'HH:mm:ss'
+                                }
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        // Function to add data to combined chart
+        function addCombinedData(chart, time, sensorUltrasonic, sensorKamera, sensorLIDAR) {
+            var maxDataPoints = 1000;
+
+            chart.data.labels.push(time);
+            chart.data.datasets[0].data.push(sensorUltrasonic);
+            chart.data.datasets[1].data.push(sensorKamera);
+            chart.data.datasets[2].data.push(sensorLIDAR);
+
+            if (chart.data.labels.length > maxDataPoints) {
+                chart.data.labels.shift();
+                chart.data.datasets[0].data.shift();
+                chart.data.datasets[1].data.shift();
+                chart.data.datasets[2].data.shift();
+            }
+
+            chart.update();
+        }
+
+        // Function to update data for each sensor
+        function updateData(chart) {
+            // Fetch data from your Django views here
+            // For simplicity, using random values as placeholders
+            var time = new Date().toLocaleTimeString();
+            var sensorUltrasonicValue = Math.random() * 100;
+            var sensorKameraValue = Math.random() * 100;
+            var sensorLIDARValue = Math.random() * 100;
+
+            // Add data to the combined chart
+            addCombinedData(chart, time, sensorUltrasonicValue, sensorKameraValue, sensorLIDARValue);
+        }
+
+        // Initialize combined charts
+        var combinedLineChart1 = initCombinedChart(document.getElementById('combinedLineChart1').getContext('2d'));
+        var combinedLineChart2 = initCombinedChart(document.getElementById('combinedLineChart2').getContext('2d'));
+        var combinedLineChart3 = initCombinedChart(document.getElementById('combinedLineChart3').getContext('2d'));
+
+        // Update data for each chart
+        setInterval(function () {
+            updateData(combinedLineChart1);
+            updateData(combinedLineChart2);
+            updateData(combinedLineChart3);
+        }, 1000);
+    </script>
+</body>
+
+</html>

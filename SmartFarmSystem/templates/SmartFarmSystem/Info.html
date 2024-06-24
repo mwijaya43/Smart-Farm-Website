@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Smart Agriculture System</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 255, 227) !important;
+            color: #333;
+            padding-bottom: 120px; /* Add padding at the bottom to accommodate the footer */
+        }
+
+        /* Stylish Navbar */
+        .navbar {
+            background-color: rgb(200, 237, 180); 
+            padding: 20px;
+        }
+
+        .navbar-brand {
+            color: #000000 !important; /* White text color */
+            font-weight: bold;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important; /* White text color for menu items */
+            margin-right: 15px;
+        }
+
+        /* Move the last button to the right */
+        .navbar-nav .nav-item:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        /* Add some spacing to the top of the cards */
+        .card {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer {
+            width: 100%;
+            margin-top: 50px;
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            height: 120px; /* Set a fixed height for the footer */
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-info ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+      
+        /* Adjust card text color */
+        .card-body {
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 100%; /* Ensure the container takes the full height of the card */
+            justify-content: flex-start; /* Align content at the top */
+        }
+
+       .card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-container {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Center items horizontally */
+            align-items: center; /* Center items vertically */
+            margin-bottom: 20px;
+            height: 200px; /* Set a fixed height for the container */
+            overflow: hidden; /* Hide overflow to maintain container size */
+        }
+
+        .chart-container img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            max-height: 100%; /* Prevent the image from overflowing the container */
+        }
+
+        .back-btn {
+            color: #fff;
+            background-color: #57120E;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .main-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 30px;
+            text-align: justify;
+        }
+        .card-body {
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align content at the top */
+            height: 100%; /* Ensure the container takes the full height of the card */
+            justify-content: flex-start; /* Align content at the top */
+        }
+    </style>
+</head>
+
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <!-- Stylish Navbar with Additional Menu Items -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://lh3.googleusercontent.com/pw/ADCreHcxHIWbANwwJUBQVzav7-WA7p1wgPfNBZYRUEtHoeuygIZW5pBMOYMafQF4dKS9O2byZsZT5KK4C2he2DFqAUIOHMJlcBcgQ0wmsf0n6BoxOGAUkafm5eOlff4cTKkn8rQZtWfjFHdv3ztHHyeGxeGEjZbaK4RBpk5jJ8U19JKGOtNrsULS89P-szTTKEo5xxvNL4paVcdLbcAVJ1RdjwnIMgDjBo4D_2e2og1L-k-DICPzpftvuyGdD7arkIfzGB881g0_iispoljidue-NS_thtbmFnswM7HJOwdR66uDAATYscjlSGlOm0dnXtkDAr8M71C2690rc7K4sfWBP8rqdWwmrfPRrnzBlBUR1LAZGG5j5eXyEHSdQyFTIpL3_649CA_iugSJnKsI5CTqkp5MHhDRoas9-GLYcfxhzYah6MaR-6uuRamJX72TBBgdB1F5B4-fmjDrSU9K5ZlCs5pXLpAMHOUBpJztkCSTtl-i0IIlPvLmNZOnFpDUvxOtNJz8ZfVOUI7m6tFH8q7mBM-YcsvcVbYJfHeRxz8TP5Wu_su35d0eWR3Etq0Wznpm-hwt5WcROQ2vGNQWz9V2cTxk6np7Bd0t4TAsqxfLuJDp1M4sDs-knSmuxv0c05ZL7trTAG7KEdI-hMEi8Q9Dk7GoIuf03qzxMPiAp_GR8TgzS3we9vHbyXUuDHHa9R2eOL9BxBUiNLU5X_WNeVxnC0FqohThrUj6pJk9VaR2K3eCUqxO7gKm2OKj1xurOAXBJF8jLp5ZTohfYmtZrLmH26q-0ajphNGA53wJsOZP-cTXZqpSoJh1A_nyJOisWt4y9BNZ1kj1QW4g7MVbnKAJiX6F3OXvcEouThQxum9yIUNvRPqqcve-cYLwD8vSuoBeNrUhxlN9PYsMOJ6qTHyNx7QJSYQRYV2w8PefEHU=w225-h225-s-no-gm?authuser=0" alt="Logo" height="30">
+                Smart Farm Information
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- New button moved to the right -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="javascript:history.back()" class="btn btn-outline-success">Back</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card h-100">
+                    <div class="main-container">
+                        <h5 class="card-title"><strong style="font-size: 24px; margin-bottom: 10px;">Subsystem 1 (Smart Ecosystem)</strong></h5>
+                    </div>
+                    <div class="chart-container img">
+                        <img src="https://lh3.googleusercontent.com/pw/ADCreHdMokchUMnWs7upCrU4Zr9DT4CoKCOmX4hYYEp1k_aQ9Y4ZYwPzmUuuaQHkeslRhkldCVdA3N_Ah6c9h1DyALKy0NH17nBuDsKvpaj7e_r0EQrAzf1xcqh8r8IRlwgIfeJIwVVSTBVyb6igEr7cMDXq=w1198-h484-s-no-gm?authuser=0" class="img-fluid" alt="Subsystem 1 Image">
+                    </div>
+                    <div class="main-container">
+                        <p class="card-text">Pada subsistem ini terdapat sensor suhu, kelembapan, dan intensitas cahaya. Terdapat pula aktuator Kipas dan Ventilasi, Water Mist Sprinkler, dan Lampu UV. 
+                            Tujuan dari semua sensor adalah untuk memonitor kondisi lingkungan sekitar tanaman agar tanaman dapat tumbuh dengan maksimum, dan hal ini dapat dipenuhi oleh 3 aktuator yang telah disediakan. Ketika suhu teralu panas, maka tanaman akan mengalami penguapan yang tinggi sehingga penyerapan nutrisi kurang optimal dan karena media tanam bersifat hidroponik maka pupuk berupa aliran air yang mengalir ke akar tanaman. Oleh karena itu, air nutrisi akan ikut menguap saat suhu terlalu panas dan hal ini akan merugikan petani. Karena itu, kita memasang aktuator kipas yang berada di ventilasi guna menurunkan suhu. Selain itu, ketika kelembapan dan cahaya kurang bagi tanaman maka tanaman tidak dapat bertumbuh secara optimal karena kekurangan cahaya Matahari untuk fotosintesis dan kekurangan kelembapan untuk pertumbuhan yang maksimal. Oleh karena itu, kita menyediakan aktuator water mist sprinkler dan lampu UV untuk menyediakan keduanya. Machine learning pada subsistem ini bertujuan untuk menjaga kondisi lingkungan baik suhu, kelembapan, dan intensitas cahaya agar tanaman dapat bertumbuh secara optimal.
+                        </p>
+                        <ul>
+                            <li>Kipas dan Ventilasi akan menyala dengan kecepatan 1 apabila suhu lebih besar dari 27, kelembapan lebih besar atau sama dengan 60 dan cahaya lebih besar dari 5000, lalu akan menyala dengan kecepatan 2 apabila suhu lebih besar dari 30, kelembapan lebih besar atau sama dengan 60 dan cahaya lebih besar dari 5000, lalu akan menyala dengan kecepatan 3 apabila suhu lebih besar dari 35, kelembapan lebih besar atau sama dengan 60 dan cahaya lebih besar dari 5000, dan akan mati bila tidak memenuhi kondisi di atas.</li>
+                            <li>Water Mist Sprinkler akan menyala bila suhu lebih dari 31 derajat dan kelembapan di bawah 60, serta cahaya di atas 5000 atau saat kondisi terang matahari terlalu panas, saat kelembapan di atas 80 akan mati karena kelembapan yang baik untuk tumbuhan berkisar di antara 60% sampai 80%, lalu saat suhu lebih dari 36, maka aktuator akan menyala agar membantu kipas dan ventilasi untuk mendinginkan ruangan agar mengurangi penguapan nutrisi pada tumbuhan.</li>
+                            <li>Lampu UV akan menyala apabila waktu berkisar di antara 06.00 sampai 18.00 saat kondisi intensitas cahaya di bawah 5000 lux dan akan mati apabila tidak memenuhi kondisi tersebut.</li>
+                        </ul>
+                    </div>
+                    <div class="chart-container img">
+                        <img src="https://lh3.googleusercontent.com/pw/ADCreHeLKMfDj-ZM88-qUkL7PL3ywxM1peXq0zuuZcu3Kb8FQCtCm5k0ooIeALqqzZRifqIL6YxNTO86HuyuWxT9rMGDpojScKnBYJM7S150lWEoCKA-pOBWAGX6kQOtQvx48osN3WpCby7eBKzt1MPoeDavH-betvrXoUqHFTqOOZgxqHuIrrJpD7d2ZIM3JEXIPsc4fxvTYLEu14NNYRX07OPLghFkVz5L2t39wp-CFFr5ElVKi0MR8Ff27zkylql5SqhtzxaJtRdsGbr_t6KNv7LqvUpxF1nGLyWtLEsaU3wnsphfpctJOsOaw3jS7p5w_t5nZNAdsTqzBrzZko3wOCAANgf5M6gmcAf59cYeMXfcWbu3AU3sX-FgQAno-sCfO1WRmq-dJ3j5oUUOu6T9D0qAsS_qudvox33HjCpt6H8j3GNLwJbnfTk_VhE807c7miclR2u9hWdHaDDp0m57E_3ryMHWeuquFAuktuRxVOdmMO06cMKLdygKGPLZaloTfpcLOV51NnlOaOZ22Pl6Ocd-6Uzst8_ZIu1MgBCiB4l2DLBsxPYPeUleM6cboP3jSGppHJprgcGRBk-JND2MWBUQPU6heQNTOunR3D60v4pVrut2oDx5It329wyeyrYYqa707V0FWV59PahFGXOHrqAqZbELXzE2YKi0CDkomRj-Rg5QgOfE65x-_uCtSIx-WRWtj27UOlCpvNo9JFX3qX-w1aekiHYbLdoeunmsBzQzpcAZ5Basyk9NwcAapab7Je8oIARn-cxy0BI8QM1dwIHMHu7qa-Kcn1MM7qKO5syzpcFFMKkLHhhs1KgfGZSKq7XXvigosoMeU1lJTVLhd_qJGXX3l5QwTKLWRvuzJbmQrVT2i8tNpOOIovI6wIh_T78AfIfxZvDTYLnDbHNNaBARmmKyyTI9AcCH4Bo=w923-h308-s-no-gm?authuser=0" class="img-fluid" alt="Subsystem 1 Image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card h-100">
+                    <div class="main-container">
+                        <h5 class="card-title"><strong style="font-size: 24px; margin-bottom: 10px;">Subsystem 2 (Smart Planting)</strong></h5>
+                    </div>
+                    <div class="chart-container img">
+                        <img src="https://lh3.googleusercontent.com/pw/ADCreHepgfoOIRr0ReF8A4FlGOTcb0DdU_pbgBszTupZCJUlMUSiPvMJ4nU6zp-GBteqfi86qlLRSlGtVSD1Lx3Hmm3WWymEsIWx8jJIv2sm6YuyTomY2aSeLhqHeJOPTu3Wkp4rOs7xZkRyrD5MF5v8uoOt=w1201-h486-s-no-gm?authuser=0" class="img-fluid" alt="Subsystem 2 Image">
+                    </div>
+                    <div class="main-container">
+                        <p class="card-text">Pada subsistem ini terdapat sensor water level, nutrisi, dan pH. Terdapat pula aktuator pompa air, dispenser nutrisi, dan dispenser pengatur pH.
+                            Subsistem ini terfokus pada automasi aliran air yang merupakan nutrisi bagi tumbuhan. Untuk tanaman tumbuh dengan optimal, maka nutrisi yang diberikan kepada tumbuhan harus konsisten dan pH pada air harus dalam range 5,5-6,5. Hal ini dapat direalisasikan dengan aktuator dispenser nutrisi dan dispenser pH, serta pompa air untuk terus menambah air jika kondisi air berada di bawah 50% pada tempat penyimpanan nutrisi. Sensor-sensor bertujuan untuk monitoring data volume air, tingkat pH, dan kadar nutrisi yang berada dalam air. Hal ini diperlukan karena saat pompa air mengisi air, pastinya kadar nutrisi dan pH akan berubah. Oleh karena itu, kami menerapkan machine learning untuk proses ini agar tanaman dapat menerima nutrisi dan kadar pH yang konsisten untuk pertumbuha yang optimal. 
+                        </p> <ul>
+                            <li>Pompa air akan menyala bila sensor water level mendeteksi bahwa ketinggian air kurang dari 50 dan sensor nutrisi membaca tingkatan nutrisi yang berada di dalam air berupa persen kurang dari 100, dan sensor pH membaca data pH air di kisaran 5.5 sampai 7. selain dari kondisi ini, pompa air tidak akan menyala</li>
+                            <li>Dispenser nutrisi akan menambahkan nutrisi ke dalam kandungan air apabila nutrisi berada di bawah 90% dan pH berada di dalam kondisi stabil yaitu di antara 5.5 sampai 7, selain dari kondisi ini, dispenser nutrisi tidak akan menambahkan nutrisi ke dalam kandungan air.</li>
+                            <li>Dispenser pH akan menstabilkan pH dengan menambahkan larutan ke air apabila pH berada lebih dari 7 atau kurang dari 5.5, serta apabila tinggi air kurang dari 99, dan kandungan nutrisi lebih dari 70.</li>
+                        </ul>
+                    </div>
+                    <div class="chart-container img">
+                        <img src="https://lh3.googleusercontent.com/pw/ADCreHeoknmHrsEt06lHDHY_pOqPWtVBkqzaCHFmIhKv9jOdoy2SHKFEsECzmtOXH_OS9xHcxlM1k7PzhuI13S3laJ1ZJQ0bEp-jAq9f1WBWD4UXWksrIJDkokksgI1j1g69mOSBBFDuR96tFUK14FU6ftnryG5slgRnpLY0IxrftNVbEzVH-GgJYWUtdOsf7jn2W0AwCYiIYvOINcPiU6rCJI3RFPdtUVRfTlGh_EFTHspz2rHG9i5kf9PBl6d4Zm5EaTaee21fdxOkUfAa1NMcvSoc6Fkr2yqcNR1mazk2cwkq_1BYyGVPa0qd9c-DlV6Kx2DDbtyhe-Kp5TAGM4w3bLbW8qhy7U6O3E_tgy7sJdTPXYaZ9qfHydDs_Y8qUy6k6KC7HyViVbzQejmxmcWgBULSZpC0mPLez-PmBfA6YsXxzFzoTykSuDEbibptiMu88HkMA0tjynkRsNY2jX0lY0-UtFGgGT4bvreJX3QZ4Vl_dyaB0LH_63PiSLyC9u0_FzyjuJDWLcSZfqDuSomNieeIRsllrGDkzpQp86ABqFA82LhHZaN87oLka2kVEmh7FnGc4OZl4Bmeh6mS4p1KabVORBZNRj2oTcaePD7HUxSFVYoKhm5pI_HzsLMiJXeGh32cscpeDElCo0xbTfy-jG5snY_EaXAI_ClDnLfxDn2v67nbuUSUd0li4KsS3xDGFQNGq-QBht7p3zfkzNazsxJm8oYnvKZgTWTJptwunAILkoPKcWSqumgpnibiW7ZRJuYgm5r95jp2WajpxagrQ7hHNH4K_ExTgmItfEp3DYv9PifrBZREp1_do3hEi3EmUyPHS-IqWUZfQoBgxSkCi3vegJZAdSXp9GRDb2M6cWV5YGNuO0iszJUwp9eHPKX_NoD4iDiz9XmMUxXpYBcpuzaQHReX37ewJWS1QvI=w923-h306-s-no-gm?authuser=0" class="img-fluid" alt="Subsystem 1 Image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card h-100">
+                    <div class="main-container">
+                        <h5 class="card-title"><strong style="font-size: 24px; margin-bottom: 10px;">Subsystem 3 (Smart Farm Management)</strong></h5>
+                    </div>
+                    <div class="chart-container img">
+                        <img src="https://lh3.googleusercontent.com/pw/ADCreHf_o6o-TlmE952QFkx6cYXzTuKG1eWquOTvdTFacbBQ3EaHWTpFzMTrpZSdyOdrRlrH_Im50Xohrr6hMmtAC2ycPy70RaZjfyzSX7B21cJOG8HQhKzthkRoIZ9wjv8YKaoaxZBwO0Z3UkDgf7n22NBl=w1177-h477-s-no-gm?authuser=0" class="img-fluid" alt="Subsystem 3 Image">
+                    </div>
+                    <div class="main-container">
+                        <p class="card-text">Pada subsistem ini terdapat sensor ultrasonik, kamera, dan LIDAR. Terdapat pula aktuator LED RGB, LCD, dan Alarm. 
+                            Subsistem ini bertujuan untuk memonitoring tanaman yang gagal tumbuh atau layu dan tanaman yang sudah siap dipanen, serta menjaga keamanan wilayah hidroponik agar tidak dimasuki oleh sembarang orang. Hal ini dapat direalisasikan dengan kombinasi ketiga sensor, dimana kamera terdapat computer vision sehingga dapat mendeteksi tanaman yang layu atau mendeteksi orang lain yang tidak dikenal melalui face recognition. Sensor ultrasonic bertujuan untuk mendeteksi tanaman yang gagal tumbuh dan penggunaan LIDAR serta kamera ultrasonic membantu pengambilan keputusan oleh computer vision. Di sisi lain, aktuatuor LED akan memberikan informasi kepada petani. Ketika LED berwarna hijau artinya tanaman sudah siap panen. Ketika LED kuning, maka tanaman dapat diidentifikasi layu atau gagal tumbuh. Ketika LED merah artinya terdapat orang yang tidak dikenal masuk ke dalam lingkungan hidroponik. Alarm akan menyala apabila ketiga sensor mendeteksi adanya orang yang tidak dikenal. LCD akan membantu petani monitoring dari jarak jauh. Machine learning disini membantu pengambilan keputusan untuk setiap kondisi yang dideteksi. 
+                        </p>
+                        <ul>
+                            <li>LED RGB akan berwarna hijau bila tumbuhan yang tumbuh sehat berjumlah di atas 40, LED akan berwarna kuning bila tumbuhan yang sehat berada di bawah 40, dan akan berwarna merah bila sensor ultrasonik membaca nilai 51 dan kamera membaca nilai 1 dan lidar kurang dari 10 yang berarti ada orang yang menghalangi sensor karena panjang ruangan bernilai 10.</li>
+                            <li>LCD akan menampilkan kondisi alarm dan kondisi LED</li>
+                            <li>Alarm akan menyala apabila kondisi sensor ultrasonik membaca nilai 51 dan kamera membaca nilai 1 dan lidar kurang dari 10 yang berarti ada orang yang menghalangi sensor karena panjang ruangan bernilai 10. </li>
+                        </ul>
+                    </div>
+                    <div class="chart-container img">
+                        <img src="https://lh3.googleusercontent.com/pw/ADCreHcwTZSDv_2g8lpMwk_QqGYIYsMuSoN-G5exreCLirZGIBCSOPnVIDGZDmnpICZBshe_NgvWYT3gyeicqf06Biqrvp33dbUbcoZK-1K1On-awRmISAZYGU3Rnz57EyoLuWbVxZnYTt1nw0rw7bbNO967i7gkcFGSfp-HxGmx-op4k8b9dt85RYbtnD22suJSlzKAyPQzbB-KcDJETr6Y8LSssWKT5Wrq6BjnyPBac9AU5RrkHeLuODPn58fcdhlKaO5v3NpSJkSiRKzZOQuFicUnrT92y53Zd-ycEDxITd8XF5lL3vZZYljW9Ez3ZmE3OHko5KTOEZEygMUoam4aBEuzlaOgfyj50iqqf0Jn_nVccT_ZKXolFN5H9t2cvWe7xQyA-HN4ujmjmYcCZ4bX-vbBAz84oOqmeceacMT3s4E5asljQ0IZqXpL56QprUS_Rdib-tM47_7D_4ctuI7_WN5b9Ts13cxq9hmJmBG2RVHhalmNoF4Z9HMkZBOS58YmoeFolbxI3D1Uxxl8UcxF547A0yBfNmyMSvf0BY1kHsOHwT-VU0Vj2loK5c2G0DBTZPgF9WHQjjSIBmu1uJi0899u2i6KRfALd4tqeokS6IUGS9x-qlTxnIdtBq9jGyFn1gMmZ0uugJPuGuiAwUF_CefT9BGg0GKp49neOKFOCc7P084Ur9qlM4Mb3A3eDheVTGQDrK2NWT4Pl1cfhp6Q7wM5UeD6uaRHPvKCi_CH7MCds-mWfjQkhjDG74lzUaOGRi8R3qD7qdfYDi1pff5s2W3zY_RjJQH1YF_JmIulElgxYt_lElpPOe5tyv25Qm61-KhMj6bmVNAbe-Qgs4IBYYbMxfQL86inbE6MpCRjPaQWhgYuUQUcBNHYN1u5axlJlw0vI9xAGbiW0IlY34hGuEuBD4zdc5AukOuHDjE=w926-h302-s-no-gm?authuser=0" class="img-fluid" alt="Subsystem 1 Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <h5><strong>References</strong></h5>
+        <ul style="list-style: none; padding: 0;">
+            <li style="display: inline; margin: 0 10px;"><a href="https://getbootstrap.com/">Bootstrap</a></li>
+            <li style="display: inline; margin: 0 10px;"><a href="https://developers.google.com/chart/interactive/docs/gallery/linechart">Google Charts</a></li>
+            <li style="display: inline; margin: 0 10px;"><a href="https://chat.openai.com/">OpenAI Chat</a></li>
+            <li style="display: inline; margin: 0 10px;"><a href="https://biofarmsinc.com/">Logo</a></li>
+        </ul>
+        <p>&copy; 2023 Smart Farm Website</p>
+    </footer>
+</body>
+</html>
